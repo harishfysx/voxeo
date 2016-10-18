@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xmlns="http://www.w3.org/2001/vxml">
+
+  <meta name="maintainer" content="YOUREMAILADDRESS@HERE.com"/>
+
+
+  <form id="MainMenu">
+    <field name="MovieGenre">
+     <prompt>
+      Please say your favorite movie genre name.For example Family, Action, Drama, Comedy
+     </prompt>
+     
+     <!-- Define the grammar. -->
+     <grammar xml:lang="en-US" root = "myrule">
+     	 
+	  <rule id="myrule">
+	  	<one-of>
+ 	  		<item> Family </item>
+ 			<item> Action </item>
+ 			<item> Drama </item>
+ 			<item> Romance </item>
+ 			<item> Horror </item>
+    	</one-of>
+   	   </rule>
+      </grammar>
+	  
+	  <!-- The user was silent, restart the field. -->
+      <noinput>
+        I did not hear anything.  Please try again.
+        <reprompt/>
+      </noinput>
+	  
+	  <!-- The user said something that was not defined in our grammar. -->
+      <nomatch>
+        I did not recognize that character.  Please try again.
+        <reprompt/>
+      </nomatch>
+    </field>
+	
+	<!-- Checks the "MovieGenre" value against eah of the valid values. -->
+	<filled namelist="MovieGenre">
+      <if cond="MovieGenre == 'Family'">
+        <prompt>
+	 There are three listing under family. Zootopia, Storks,Alice Through the Looking Glass
+	</prompt>
+      <elseif cond="MovieGenre == 'Action'"/>
+        <prompt>
+	  There are three listing under Action. Deep water Horizon,The Magnificent Seven,Star Trek Beyond 
+	</prompt>
+      <elseif cond="MovieGenre == 'Drama'"/>
+        <prompt>
+	 There are three listing under Drama.The Infiltrator,Sully,Snowden 
+	</prompt>
+      <elseif cond="MovieGenre == 'Romance'"/>
+        <prompt>
+	 There are three listing under Romance.Mike and Dave Need Wedding Dates,Titanic ,The Light Between Oceans 
+	</prompt>
+      <elseif cond="MovieGenre == 'Horror'"/>
+        <prompt>
+	  There are three listing under Horror.Don't Breathe,Titanic ,Resident Evil The Final Chapter,Train to Busan
+	</prompt>
+      <else/>
+      <prompt>
+        A match has occurred, but no specific if statement
+        was written for it.  Probably just a different movie 
+        like Foriegn.
+      </prompt>
+      </if> 
+    </filled>
+  </form>
+</vxml>
+
+
+
+
